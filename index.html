@@ -86,7 +86,7 @@
 
   <!-- ==================== DESKTOP HEADER ==================== -->
   <header id="desktop-header" class="hidden lg:block fixed top-0 left-0 w-full z-40 bg-black/80 backdrop-blur-custom border-b border-brandDivider/50 transition-all duration-300">
-    <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+    <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between gap-4">
       <a href="#top" class="flex items-center gap-3 hover:opacity-90 transition duration-200">
         <img src="THE-SUM-LOGO.png" alt="THE SUM 로고" class="w-14 h-14 rounded-2xl object-cover border border-brandDivider">
         <div>
@@ -95,28 +95,28 @@
         </div>
       </a>
       
-      <nav class="flex items-center space-x-7">
-        <a href="#the-sum-brand" class="text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center">회사소개</a>
-        <a href="#services" class="text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center">서비스</a>
-        <a href="#business-why" class="text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center">IT 의사결정</a>
-        <a href="#individual-detail" class="text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center">AI 직업상담</a>
-        <a href="#culture" class="text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center">문화</a>
-        <a href="#sns" class="text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center">온라인 거점</a>
-        <button id="header-signup-btn" onclick="openSignupModal()" class="text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center focus:outline-none">회원 가입</button>
-        <a href="#pricing" class="text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center">멤버십 요금제</a>
-        <a href="#board" class="text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center">게시판</a>
-        <a href="#location" class="text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center">위치/문의</a>
+      <nav class="flex items-center gap-x-2 xl:gap-x-4 2xl:gap-x-6 shrink">
+        <a href="#the-sum-brand" class="text-[11px] xl:text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center whitespace-nowrap">회사소개</a>
+        <a href="#services" class="text-[11px] xl:text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center whitespace-nowrap">서비스</a>
+        <a href="#business-why" class="text-[11px] xl:text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center whitespace-nowrap">IT 의사결정</a>
+        <a href="#individual-detail" class="text-[11px] xl:text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center whitespace-nowrap">AI 직업상담</a>
+        <a href="#culture" class="text-[11px] xl:text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center whitespace-nowrap">문화</a>
+        <a href="#sns" class="text-[11px] xl:text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center whitespace-nowrap">온라인 거점</a>
+        <button id="header-signup-btn" onclick="openSignupModal()" class="text-[11px] xl:text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center focus:outline-none whitespace-nowrap">회원 가입</button>
+        <a href="#pricing" class="text-[11px] xl:text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center whitespace-nowrap">멤버십 요금제</a>
+        <a href="#board" class="text-[11px] xl:text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center whitespace-nowrap">게시판</a>
+        <a href="#location" class="text-[11px] xl:text-xs font-semibold text-brandSecondary hover:text-white transition py-3 min-h-[44px] inline-flex items-center whitespace-nowrap">위치/문의</a>
       </nav>
       
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-x-2 xl:gap-x-3 shrink-0">
         <div id="header-greeting" class="text-2xs text-brandSecondary text-right max-w-[120px] truncate" style="display: none;">게스트로 접속 중입니다.</div>
         <button id="logout-btn" class="text-2xs font-bold text-red-500 hover:text-red-400 transition min-h-[44px] px-1" style="display:none;">로그아웃</button>
         
         <!-- Virtual Trigger Buttons -->
-        <a href="#pricing" class="text-xs font-semibold text-brandAccent border border-brandAccent/30 hover:bg-brandAccent/10 transition px-4 py-2.5 rounded-full min-h-[44px] flex items-center justify-center">
+        <a href="#pricing" class="text-[11px] xl:text-xs font-semibold text-brandAccent border border-brandAccent/30 hover:bg-brandAccent/10 transition px-3 py-2 xl:px-4 xl:py-2.5 rounded-full min-h-[40px] xl:min-h-[44px] flex items-center justify-center whitespace-nowrap">
           멤버십 요금제
         </a>
-        <button id="header-login-btn" onclick="openLoginModal()" class="text-xs font-semibold text-black bg-white hover:bg-neutral-200 transition px-4 py-2.5 rounded-full min-h-[44px] flex items-center justify-center">
+        <button id="header-login-btn" onclick="openLoginModal()" class="text-[11px] xl:text-xs font-semibold text-black bg-white hover:bg-neutral-200 transition px-3 py-2 xl:px-4 xl:py-2.5 rounded-full min-h-[40px] xl:min-h-[44px] flex items-center justify-center whitespace-nowrap">
           로그인
         </button>
       </div>
