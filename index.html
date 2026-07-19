@@ -738,8 +738,8 @@
                 상담 일정 조율, 짧은 질문, 프로그램 안내를 가장 빠르게 주고받는 채널입니다.
               </p>
             </div>
-            <a href="#" onclick="alert('카카오톡 채널 연결을 준비합니다.')" class="w-full text-center text-2xs font-semibold text-white bg-black/60 hover:bg-neutral-800 border border-brandDivider py-2.5 rounded-lg min-h-[44px] flex items-center justify-center transition mt-4">
-              채널 추가하기
+            <a href="#" onclick="alert('카카오톡 채널을 준비 중입니다. 조만간 공식 채널로 찾아뵙겠습니다! 💬')" class="w-full text-center text-2xs font-semibold text-white bg-black/60 hover:bg-neutral-800 border border-brandDivider py-2.5 rounded-lg min-h-[44px] flex items-center justify-center transition mt-4">
+              준비 중입니다
             </a>
           </article>
 
@@ -768,9 +768,9 @@
                 나이대별 커리어 이슈, 비즈니스 인사이트, THE SUM 근황을 담은 이메일 레터입니다.
               </p>
             </div>
-            <a href="#contact" class="w-full text-center text-2xs font-semibold text-white bg-black/60 hover:bg-neutral-800 border border-brandDivider py-2.5 rounded-lg min-h-[44px] flex items-center justify-center transition mt-4">
+            <button onclick="openNewsletterModal()" class="w-full text-center text-2xs font-semibold text-white bg-black/60 hover:bg-neutral-800 border border-brandDivider py-2.5 rounded-lg min-h-[44px] flex items-center justify-center transition mt-4 focus:outline-none">
               뉴스레터 신청
-            </a>
+            </button>
           </article>
 
         </div>
@@ -1281,6 +1281,34 @@
     </div>
   </div>
 
+  <!-- ==================== NEWSLETTER MODAL ==================== -->
+  <div id="newsletter-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/75 backdrop-blur-md">
+    <div class="relative w-full max-w-sm bg-brandSurface border border-brandDivider rounded-2xl p-8 shadow-2xl space-y-6">
+      <!-- Close Button -->
+      <button onclick="closeNewsletterModal()" class="absolute top-4 right-4 text-brandSecondary hover:text-white min-h-[44px] min-w-[44px] flex items-center justify-center focus:outline-none">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="text-center space-y-2">
+        <div class="w-10 h-10 bg-brandAccent/10 text-brandAccent rounded-full flex items-center justify-center mx-auto mb-4">
+          <i data-lucide="mail" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white">SUM LETTER 구독</h3>
+        <p class="text-xs text-brandSecondary">매월 1·3째 주 수요일, 비즈니스 & 커리어 인사이트를 보내드립니다.</p>
+      </div>
+
+      <form id="newsletter-form" onsubmit="handleNewsletterSubscribe(event)" class="space-y-4">
+        <div class="space-y-1">
+          <label class="text-[10px] font-semibold text-brandSecondary uppercase">이메일 주소</label>
+          <input type="email" name="email" required placeholder="name@company.com" class="w-full bg-black/50 border border-brandDivider rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-brandAccent transition duration-200 min-h-[44px]">
+        </div>
+        <button type="submit" class="w-full bg-brandAccent text-white hover:bg-blue-600 font-bold py-3.5 rounded-lg text-xs transition duration-200 min-h-[44px] flex items-center justify-center">
+          구독 신청하기
+        </button>
+      </form>
+    </div>
+  </div>
+
   <!-- ==================== PREMIUM SMART PAYMENT MODAL ==================== -->
   <div id="payment-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/75 backdrop-blur-md">
     <div class="relative w-full max-w-md bg-brandSurface border border-brandDivider rounded-2xl p-8 shadow-2xl space-y-6">
@@ -1394,6 +1422,50 @@
       const modal = document.getElementById('login-modal');
       modal.classList.add('hidden');
       document.body.style.overflow = '';
+    }
+
+    function openNewsletterModal() {
+      const modal = document.getElementById('newsletter-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeNewsletterModal() {
+      const modal = document.getElementById('newsletter-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    }
+
+    async function handleNewsletterSubscribe(e) {
+      e.preventDefault();
+      const email = e.target.email.value.trim();
+      
+      try {
+        if (!window.supabase) throw new Error("Supabase가 연결되지 않았습니다.");
+        
+        const { error } = await window.supabase
+          .from('newsletter_subscribers')
+          .insert([{ email }]);
+          
+        if (error) {
+          if (error.code === '23505' || error.message.includes('unique')) {
+            alert("이미 구독 신청이 완료된 이메일 주소입니다. 📬");
+          } else {
+            throw error;
+          }
+        } else {
+          alert("SUM LETTER 구독 신청이 완료되었습니다! 매달 알찬 소식으로 찾아갈게요. 🎉");
+          closeNewsletterModal();
+          e.target.reset();
+        }
+      } catch (err) {
+        console.error("[NEWSLETTER SUBSCRIBE ERROR]", err);
+        alert("구독 신청 중 오류가 발생했습니다: " + err.message);
+      }
     }
 
     function toggleModalAuthMode(mode) {
